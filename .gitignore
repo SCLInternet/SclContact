@@ -2,3 +2,6 @@ composer.lock
 composer.phar
 vendor
 clover.xml
+.buildpath
+.project
+.settings
