@@ -1,0 +1,27 @@
+{
+    "name": "sclinternet/scl-contact",
+    "description": "A useful set of classes and interfaces for storing contact information",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/SCLInternet/SclContact",
+    "authors": [
+        {
+            "name": "Tom Oram",
+            "email": "tom@x2k.co.uk",
+            "homepage": "http://github.com/tomphp"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "require-dev": {
+        "phpmd/phpmd" : "1.4.0",
+        "squizlabs/php_codesniffer": "1.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "SclContact\\": "src/"
+        }
+    }
+
+}
