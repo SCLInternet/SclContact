@@ -15,6 +15,21 @@ namespace SclContact;
 interface PersonNameInterface
 {
     /**
+     * Initialise the object.
+     *
+     * @param string $firstName
+     * @param string $lastName
+     */
+    public function __construct($firstName = '', $lastName = '');
+
+    /**
+     * Returns the persons name.
+     * 
+     * @return string
+     */
+    public function __toString();
+
+    /**
      * Gets the value for firstName.
      *
      * @return string

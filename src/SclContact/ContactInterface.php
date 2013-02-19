@@ -26,7 +26,7 @@ interface ContactInterface
      *
      * @param PersonNameInterface $name
      */
-    public function setName($name);
+    public function setName(PersonNameInterface $name);
 
     /**
      * Gets the value for company.
@@ -54,7 +54,7 @@ interface ContactInterface
      *
      * @param EmailInterface $email
      */
-    public function setEmail($email);
+    public function setEmail(EmailInterface $email);
 
     /**
      * Gets the value for address.
@@ -68,7 +68,7 @@ interface ContactInterface
      *
      * @param AddressInterface $address
      */
-    public function setAddress($address);
+    public function setAddress(AddressInterface $address);
 
     /**
      * Gets the value for phone.
@@ -82,7 +82,7 @@ interface ContactInterface
      *
      * @param PhoneNumberInterface $phone
      */
-    public function setPhone($phone);
+    public function setPhone(PhoneNumberInterface $phone);
 
     /**
      * Gets the value for fax.
@@ -96,7 +96,7 @@ interface ContactInterface
      *
      * @param PhoneNumberInterface $fax
      */
-    public function setFax($fax);
+    public function setFax(PhoneNumberInterface $fax);
 
     /**
      * Reads the contents of a given contact object into this object.

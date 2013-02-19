@@ -29,6 +29,28 @@ class PersonName implements PersonNameInterface
     private $lastName;
 
     /**
+     * Initialise the object.
+     *
+     * @param string $firstName
+     * @param string $lastName
+     */
+    public function __construct($firstName = '', $lastName = '')
+    {
+        $this->firstName = (string) $firstName;
+        $this->lastName = (string) $lastName;
+    }
+
+    /**
+     * Returns the persons name.
+     * 
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->firstName . ' ' . $this->lastName;
+    }
+
+    /**
      * Gets the value for firstName.
      *
      * @return string
