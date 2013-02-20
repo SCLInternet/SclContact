@@ -80,9 +80,9 @@ interface AddressInterface
     /**
      * Sets the value for postcode.
      *
-     * @param PostcodeInterface $postcode
+     * @param PostcodeInterface|string $postcode
      */
-    public function setPostcode(PostcodeInterface $postcode);
+    public function setPostcode($postcode);
 
     /**
      * Gets the value for country.
@@ -94,9 +94,10 @@ interface AddressInterface
     /**
      * Sets the value for country.
      *
-     * @param CountryInterface $country
+     * @param CountryInterface|string $country
      */
-    public function setCountry(CountryInterface $country);
+    public function setCountry($country);
+
     /**
      * Reads the contents of a given address object into this object.
      *

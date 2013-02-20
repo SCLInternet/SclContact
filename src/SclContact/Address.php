@@ -7,6 +7,8 @@
  */
 namespace SclContact;
 
+use SclContact\Exception\InvalidArgumentException;
+
 /**
  * Basic class for storing a postal address.
  *
@@ -66,7 +68,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Gets the value for line1.
+     * {@inheritDoc}
      *
      * @return string
      */
@@ -76,7 +78,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Sets the value for line1.
+     * {@inheritDoc}
      *
      * @param string $line1
      */
@@ -86,7 +88,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Gets the value for line2.
+     * {@inheritDoc}
      *
      * @return string
      */
@@ -96,7 +98,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Sets the value for line2.
+     * {@inheritDoc}
      *
      * @param string $line2
      */
@@ -106,7 +108,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Gets the value for city.
+     * {@inheritDoc}
      *
      * @return string
      */
@@ -116,7 +118,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Sets the value for city.
+     * {@inheritDoc}
      *
      * @param string $city
      */
@@ -126,7 +128,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Gets the value for county.
+     * {@inheritDoc}
      *
      * @return string
      */
@@ -136,7 +138,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Sets the value for county.
+     * {@inheritDoc}
      *
      * @param string $county
      */
@@ -146,7 +148,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Gets the value for postcode.
+     * {@inheritDoc}
      *
      * @return PostcodeInterface
      */
@@ -156,17 +158,30 @@ class Address implements AddressInterface
     }
 
     /**
-     * Sets the value for postcode.
+     * {@inheritDoc}
      *
-     * @param PostcodeInterface $postcode
+     * @param PostcodeInterface|string $postcode
      */
-    public function setPostcode(PostcodeInterface $postcode)
+    public function setPostcode($postcode)
     {
+        if (!is_object($postcode)) {
+            $this->postcode->set($postcode);
+        }
+
+        if (!$postcode instanceof PostcodeInterface) {
+            throw new InvalidArguementException(
+                sprintf(
+                    'Expected instance of \SclContact\PostcodeInterface or string; got "%s"',
+                    get_class($postcode)
+                )
+            );
+        }
+
         $this->postcode = $postcode;
     }
 
     /**
-     * Gets the value for country.
+     * {@inheritDoc}
      *
      * @return CountryInterface
      */
@@ -176,12 +191,25 @@ class Address implements AddressInterface
     }
 
     /**
-     * Sets the value for country.
+     * {@inheritDoc}
      *
-     * @param CountryInterface $country
+     * @param CountryInterface|string $country
      */
-    public function setCountry(CountryInterface $country)
+    public function setCountry($country)
     {
+        if (!is_object($country)) {
+            $this->country->set($postcode);
+        }
+
+        if (!$country instanceof CountryInterface) {
+            throw new InvalidArguementException(
+                sprintf(
+                    'Expected instance of \SclContact\CountryInterface or string; got "%s"',
+                    get_class($country)
+                )
+            );
+        }
+
         $this->country = $country;
     }
 
