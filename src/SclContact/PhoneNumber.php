@@ -17,7 +17,7 @@ class PhoneNumber implements PhoneNumberInterface
     /**
      * @var string
      */
-    private $number;
+    protected $number;
 
     /**
      * Initialise the class.

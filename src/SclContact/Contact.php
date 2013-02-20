@@ -19,35 +19,35 @@ class Contact implements ContactInterface
      *
      * @var PersonNameInterface
      */
-    private $name;
+    protected $name;
 
     /**
      * The company the contact represents.
      *
      * @var string
      */
-    private $company;
+    protected $company;
 
     /**
      * The email address of the contact.
      *
      * @var EmailInterface
      */
-    private $email;
+    protected $email;
 
     /**
      * The address of the contact.
      *
      * @var AddressInterface
      */
-    private $address;
+    protected $address;
 
     /**
      * The phone number of the contact.
      *
      * @var PhoneNumberInterface
      */
-    private $phone;
+    protected $phone;
 
     /**
      * The fax number of the contact.
@@ -55,7 +55,7 @@ class Contact implements ContactInterface
      * @todo Smash all fax machines left in the world.
      * @var PhoneNumberInterface
      */
-    private $fax;
+    protected $fax;
 
     /**
      * Initialise member variables.

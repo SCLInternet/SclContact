@@ -19,14 +19,14 @@ class PersonName implements PersonNameInterface
      *
      * @var string
      */
-    private $firstName;
+    protected $firstName;
 
     /**
      * The persons last name
      *
      * @var string
      */
-    private $lastName;
+    protected $lastName;
 
     /**
      * Initialise the object.

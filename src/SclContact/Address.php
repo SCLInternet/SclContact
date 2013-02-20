@@ -19,42 +19,42 @@ class Address implements AddressInterface
      *
      * @var string
      */
-    private $line1;
+    protected $line1;
 
     /**
      * Second line of the address.
      *
      * @var string
      */
-    private $line2;
+    protected $line2;
 
     /**
      * The town/city line of the address.
      *
      * @var string
      */
-    private $city;
+    protected $city;
 
     /**
      * The county/state line of the address.
      *
      * @var string
      */
-    private $county;
+    protected $county;
 
     /**
      * The post/zip code.
      *
      * @var PostcodeInterface
      */
-    private $postcode;
+    protected $postcode;
 
     /**
      * The country.
      *
      * @var CountryInterface
      */
-    private $country;
+    protected $country;
 
     /**
      * Initialise member variables.

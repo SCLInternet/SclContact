@@ -17,7 +17,7 @@ class Email implements EmailInterface
     /**
      * @var string
      */
-    private $address;
+    protected $address;
 
     /**
      * Initialise the class.

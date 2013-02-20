@@ -17,7 +17,7 @@ class Postcode implements PostcodeInterface
     /**
      * @var string
      */
-    private $postcode;
+    protected $postcode;
 
     /**
      * Initialise the class.

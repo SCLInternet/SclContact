@@ -15,18 +15,18 @@ namespace SclContact;
 interface CountryInterface
 {
     /**
-     * Gets the value for name.
+     * Initialise the country class
      *
-     * @return name
+     * @param string|null $code
      */
-    public function getName();
+    public function __construct($code = null);
 
     /**
-     * Sets the value for name.
+     * Used to diplay the country to the user.
      *
-     * @param name $name
+     * @return string
      */
-    public function setName($name);
+    public function __toString();
 
     /**
      * Gets the value for code.

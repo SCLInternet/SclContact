@@ -15,37 +15,32 @@ namespace SclContact;
 class Country implements CountryInterface
 {
     /**
-     * The name of the country.
-     *
-     * @var string
-     */
-    private $name;
-
-    /**
      * The 2 letter country code.
      *
      * @var string
      */
-    private $code;
-
+    protected $code;
+    
     /**
-     * Gets the value for name.
+     * Initialise the country class
      *
-     * @return name
+     * @param string $code
      */
-    public function getName()
+    public function __construct($code = null)
     {
-        return $this->name;
+        if (null !== $code) {
+            $this->setCode($code);
+        }
     }
 
     /**
-     * Sets the value for name.
+     * Used to diplay the country to the user.
      *
-     * @param name $name
+     * @return string
      */
-    public function setName($name)
+    public function __toString()
     {
-        $this->name = (string) $name;
+        return strtoupper($this->code);
     }
 
     /**
@@ -83,7 +78,6 @@ class Country implements CountryInterface
      */
     public function import(CountryInterface $country)
     {
-        $this->name = $country->getName();
-        $this->code = $country->getCode();
+        $this->setCode($country->getCode());
     }
 }
