@@ -160,23 +160,10 @@ class Address implements AddressInterface
     /**
      * {@inheritDoc}
      *
-     * @param PostcodeInterface|string $postcode
+     * @param PostcodeInterface $postcode
      */
-    public function setPostcode($postcode)
+    public function setPostcode(PostcodeInterface $postcode)
     {
-        if (!is_object($postcode)) {
-            $this->postcode->set($postcode);
-        }
-
-        if (!$postcode instanceof PostcodeInterface) {
-            throw new InvalidArguementException(
-                sprintf(
-                    'Expected instance of \SclContact\PostcodeInterface or string; got "%s"',
-                    get_class($postcode)
-                )
-            );
-        }
-
         $this->postcode = $postcode;
     }
 
@@ -193,28 +180,15 @@ class Address implements AddressInterface
     /**
      * {@inheritDoc}
      *
-     * @param CountryInterface|string $country
+     * @param CountryInterface $country
      */
-    public function setCountry($country)
+    public function setCountry(CountryInterface $country)
     {
-        if (!is_object($country)) {
-            $this->country->set($postcode);
-        }
-
-        if (!$country instanceof CountryInterface) {
-            throw new InvalidArguementException(
-                sprintf(
-                    'Expected instance of \SclContact\CountryInterface or string; got "%s"',
-                    get_class($country)
-                )
-            );
-        }
-
         $this->country = $country;
     }
 
     /**
-     * Reads the contents of a given address object into this object.
+     * {@inheritDoc}
      *
      * @param ContactInterface $contact
      */
