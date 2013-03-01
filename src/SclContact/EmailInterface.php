@@ -31,7 +31,8 @@ interface EmailInterface
     /**
      * Sets the value of the email address.
      *
-     * @param string $address
+     * @param  string $address
+     * @return self
      */
     public function set($address);
 
@@ -43,9 +44,10 @@ interface EmailInterface
     public function __toString();
 
     /**
-     * Reads the contents of a EmailAddressInterface object into this.
+     * Reads the contents of a EmailInterface object into this.
      *
-     * @param EmailAddressInterface $phoneNumber
+     * @param  EmailInterface $email
+     * @return self
      */
-    public function import(EmailAddressInterface $email);
+    public function import(EmailInterface $email);
 }

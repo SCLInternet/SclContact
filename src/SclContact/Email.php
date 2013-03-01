@@ -15,12 +15,14 @@ namespace SclContact;
 class Email implements EmailInterface
 {
     /**
+     * The email address
+     *
      * @var string
      */
     protected $address;
 
     /**
-     * Initialise the class.
+     * {@inheritDoc}
      * 
      * @param string $address
      */
@@ -30,7 +32,7 @@ class Email implements EmailInterface
     }
 
     /**
-     * Returns the email address value.
+     * {@inheritDoc}
      *
      * @return string
      */
@@ -40,17 +42,20 @@ class Email implements EmailInterface
     }
 
     /**
-     * Sets the value of the email address.
+     * {@inheritDoc}
      *
-     * @param string $address
+     * @param  string $address
+     * @return self
      */
     public function set($address)
     {
         $this->$address = (string) $address;
+
+        return $this;
     }
 
     /**
-     * Returns the value of the email address.
+     * {@inheritDoc}
      *
      * @return string
      */
@@ -60,12 +65,15 @@ class Email implements EmailInterface
     }
 
     /**
-     * Reads the contents of a EmailAddressInterface object into this.
+     * {@inheritDoc}
      *
-     * @param EmailAddressInterface $phoneNumber
+     * @param  EmailInterface $email
+     * @return self
      */
-    public function import(EmailAddressInterface $email)
+    public function import(EmailInterface $email)
     {
         $this->address = $email->get();
+
+        return $this;
     }
 }

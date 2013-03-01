@@ -70,7 +70,7 @@ class Contact implements ContactInterface
     }
 
     /**
-     * Gets the value for name.
+     * {@inheritDoc}
      *
      * @return PersonNameInterface
      */
@@ -80,17 +80,20 @@ class Contact implements ContactInterface
     }
 
     /**
-     * Sets the value for name.
+     * {@inheritDoc}
      *
-     * @param PersonNameInterface $name
+     * @param  PersonNameInterface $name
+     * @return self
      */
     public function setName(PersonNameInterface $name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
-     * Gets the value for company.
+     * {@inheritDoc}
      *
      * @return string
      */
@@ -100,17 +103,20 @@ class Contact implements ContactInterface
     }
 
     /**
-     * Sets the value for company.
+     * {@inheritDoc}
      *
-     * @param string $company
+     * @param  string $company
+     * @return self
      */
     public function setCompany($company)
     {
         $this->company = (string) $company;
+
+        return $this;
     }
 
     /**
-     * Gets the value for email.
+     * {@inheritDoc}
      *
      * @return EmailInterface
      */
@@ -120,17 +126,20 @@ class Contact implements ContactInterface
     }
 
     /**
-     * Sets the value for email.
+     * {@inheritDoc}
      *
-     * @param EmailInterface $email
+     * @param  EmailInterface $email
+     * @return self
      */
     public function setEmail(EmailInterface $email)
     {
         $this->email = $email;
+
+        return $this;
     }
 
     /**
-     * Gets the value for address.
+     * {@inheritDoc}
      *
      * @return AddressInterface
      */
@@ -140,17 +149,20 @@ class Contact implements ContactInterface
     }
 
     /**
-     * Sets the value for address.
+     * {@inheritDoc}
      *
-     * @param AddressInterface $address
+     * @param  AddressInterface $address
+     * @return self
      */
     public function setAddress(AddressInterface $address)
     {
         $this->address = $address;
+
+        return $this;
     }
 
     /**
-     * Gets the value for phone.
+     * {@inheritDoc}
      *
      * @return PhoneNumberInterface
      */
@@ -160,17 +172,20 @@ class Contact implements ContactInterface
     }
 
     /**
-     * Sets the value for phone.
+     * {@inheritDoc}
      *
-     * @param PhoneNumberInterface $phone
+     * @param  PhoneNumberInterface $phone
+     * @return self
      */
     public function setPhone(PhoneNumberInterface $phone)
     {
         $this->phone = $phone;
+
+        return $this;
     }
 
     /**
-     * Gets the value for fax.
+     * {@inheritDoc}
      *
      * @return PhoneNumberInterface
      */
@@ -180,19 +195,23 @@ class Contact implements ContactInterface
     }
 
     /**
-     * Sets the value for fax.
+     * {@inheritDoc}
      *
-     * @param PhoneNumberInterface $fax
+     * @param  PhoneNumberInterface $fax
+     * @return self
      */
     public function setFax(PhoneNumberInterface $fax)
     {
         $this->fax = $fax;
+
+        return $this;
     }
 
     /**
-     * Reads the contents of a given contact object into this object.
+     * {@inheritDoc}
      *
-     * @param ContactInterface $contact
+     * @param  ContactInterface $contact
+     * @return self
      */
     public function import(ContactInterface $contact)
     {
@@ -202,5 +221,7 @@ class Contact implements ContactInterface
         $this->address->import($contact->getAddress());
         $this->phone->import($contact->getPhone());
         $this->fax->import($contact->getFax());
+
+        return $this;
     }
 }

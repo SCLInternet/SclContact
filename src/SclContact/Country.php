@@ -20,9 +20,9 @@ class Country implements CountryInterface
      * @var string
      */
     protected $code;
-    
+
     /**
-     * Initialise the country class
+     * {@inheritDoc}
      *
      * @param string $code
      */
@@ -34,7 +34,7 @@ class Country implements CountryInterface
     }
 
     /**
-     * Used to diplay the country to the user.
+     * {@inheritDoc}
      *
      * @return string
      */
@@ -44,7 +44,7 @@ class Country implements CountryInterface
     }
 
     /**
-     * Gets the value for code.
+     * {@inheritDoc}
      *
      * @return string
      */
@@ -54,9 +54,10 @@ class Country implements CountryInterface
     }
 
     /**
-     * Sets the value for code.
+     * {@inheritDoc}
      *
-     * @param string $code
+     * @param  string $code
+     * @return self
      */
     public function setCode($code)
     {
@@ -69,15 +70,20 @@ class Country implements CountryInterface
         }
 
         $this->code = $code;
+
+        return $this;
     }
 
     /**
-     * Reads the contents of a CountryInterface object into this.
+     * {@inheritDoc}
      *
-     * @param EmailAddressInterface $country
+     * @param  CountryInterface $country
+     * @return self
      */
     public function import(CountryInterface $country)
     {
         $this->setCode($country->getCode());
+
+        return $this;
     }
 }

@@ -7,7 +7,6 @@
  */
 namespace SclContact;
 
-use SclContact\Exception\InvalidArgumentException;
 
 /**
  * Basic class for storing a postal address.
@@ -80,11 +79,14 @@ class Address implements AddressInterface
     /**
      * {@inheritDoc}
      *
-     * @param string $line1
+     * @param  string $line1
+     * @return self
      */
     public function setLine1($line1)
     {
         $this->line1 = (string) $line1;
+
+        return $this;
     }
 
     /**
@@ -100,11 +102,14 @@ class Address implements AddressInterface
     /**
      * {@inheritDoc}
      *
-     * @param string $line2
+     * @param  string $line2
+     * @return self
      */
     public function setLine2($line2)
     {
         $this->line2 = (string) $line2;
+
+        return $this;
     }
 
     /**
@@ -120,11 +125,14 @@ class Address implements AddressInterface
     /**
      * {@inheritDoc}
      *
-     * @param string $city
+     * @param  string $city
+     * @return self
      */
     public function setCity($city)
     {
         $this->city = (string) $city;
+
+        return $this;
     }
 
     /**
@@ -140,11 +148,14 @@ class Address implements AddressInterface
     /**
      * {@inheritDoc}
      *
-     * @param string $county
+     * @param  string $county
+     * @return self
      */
     public function setCounty($county)
     {
         $this->county = (string) $county;
+
+        return $this;
     }
 
     /**
@@ -160,11 +171,14 @@ class Address implements AddressInterface
     /**
      * {@inheritDoc}
      *
-     * @param PostcodeInterface $postcode
+     * @param  PostcodeInterface $postcode
+     * @return self
      */
     public function setPostcode(PostcodeInterface $postcode)
     {
         $this->postcode = $postcode;
+
+        return $this;
     }
 
     /**
@@ -180,17 +194,21 @@ class Address implements AddressInterface
     /**
      * {@inheritDoc}
      *
-     * @param CountryInterface $country
+     * @param  CountryInterface $country
+     * @return self
      */
     public function setCountry(CountryInterface $country)
     {
         $this->country = $country;
+
+        return $this;
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param ContactInterface $contact
+     * @param  AddressInterface $address
+     * @return self
      */
     public function import(AddressInterface $address)
     {
@@ -200,5 +218,7 @@ class Address implements AddressInterface
         $this->county = $address->getCounty();
         $this->postcode->import($address->getPostcode());
         $this->country->import($address->getCountry());
+
+        return $this;
     }
 }

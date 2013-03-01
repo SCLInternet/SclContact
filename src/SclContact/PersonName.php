@@ -29,7 +29,7 @@ class PersonName implements PersonNameInterface
     protected $lastName;
 
     /**
-     * Initialise the object.
+     * {@inheritDoc}
      *
      * @param string $firstName
      * @param string $lastName
@@ -41,7 +41,7 @@ class PersonName implements PersonNameInterface
     }
 
     /**
-     * Returns the persons name.
+     * {@inheritDoc}
      * 
      * @return string
      */
@@ -51,7 +51,7 @@ class PersonName implements PersonNameInterface
     }
 
     /**
-     * Gets the value for firstName.
+     * {@inheritDoc}
      *
      * @return string
      */
@@ -61,17 +61,20 @@ class PersonName implements PersonNameInterface
     }
 
     /**
-     * Sets the value for first name.
+     * {@inheritDoc}
      *
-     * @param string $name
+     * @param  string $name
+     * @return self
      */
     public function setFirstName($name)
     {
         $this->firstName = (string) $name;
+
+        return $this;
     }
 
     /**
-     * Gets the value for lastName.
+     * {@inheritDoc}
      *
      * @return string
      */
@@ -81,23 +84,29 @@ class PersonName implements PersonNameInterface
     }
 
     /**
-     * Sets the value for last name.
+     * {@inheritDoc}
      *
-     * @param string $name
+     * @param  string $name
+     * @return self
      */
     public function setLastName($name)
     {
         $this->lastName = (string) $name;
+
+        return $this;
     }
 
     /**
-     * Reads the contents of a PersonName object into this.
+     * {@inheritDoc}
      *
-     * @param PersonNameInterface $name
+     * @param  PersonNameInterface $name
+     * @return self
      */
     public function import(PersonNameInterface $name)
     {
         $this->firstName = $name->getFirstName();
         $this->lastName = $name->getLastName();
+
+        return $this;
     }
 }

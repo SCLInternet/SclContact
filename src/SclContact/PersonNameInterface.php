@@ -39,7 +39,8 @@ interface PersonNameInterface
     /**
      * Sets the value for first name.
      *
-     * @param string $name
+     * @param  string $name
+     * @return self
      */
     public function setFirstName($name);
 
@@ -53,14 +54,16 @@ interface PersonNameInterface
     /**
      * Sets the value for last name.
      *
-     * @param string $name
+     * @param  string $name
+     * @return self
      */
     public function setLastName($name);
 
     /**
      * Reads the contents of a PersonName object into this.
      *
-     * @param PersonNameInterface $name
+     * @param  PersonNameInterface $name
+     * @return self
      */
     public function import(PersonNameInterface $name);
 }

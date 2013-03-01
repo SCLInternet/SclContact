@@ -15,12 +15,14 @@ namespace SclContact;
 class PhoneNumber implements PhoneNumberInterface
 {
     /**
+     * The phone number string.
+     *
      * @var string
      */
     protected $number;
 
     /**
-     * Initialise the class.
+     * {@inheritDoc}
      * 
      * @param string $number
      */
@@ -30,7 +32,7 @@ class PhoneNumber implements PhoneNumberInterface
     }
 
     /**
-     * Returns the phone number value.
+     * {@inheritDoc}
      *
      * @return string
      */
@@ -40,17 +42,20 @@ class PhoneNumber implements PhoneNumberInterface
     }
 
     /**
-     * Sets the value of the phone number.
+     * {@inheritDoc}
      *
-     * @param string $number
+     * @param  string $number
+     * @return self
      */
     public function set($number)
     {
         $this->number = (string) $number;
+
+        return $this;
     }
 
     /**
-     * Returns the value of the phone number.
+     * {@inheritDoc}
      *
      * @return string
      */
@@ -60,12 +65,15 @@ class PhoneNumber implements PhoneNumberInterface
     }
 
     /**
-     * Reads the contents of a PhoneNumberInterface object into this.
+     * {@inheritDoc}
      *
-     * @param PhoneNumberInterface $phoneNumber
+     * @param  PhoneNumberInterface $phoneNumber
+     * @return self
      */
     public function import(PhoneNumberInterface $phoneNumber)
     {
         $this->number = $phoneNumber->get();
+
+        return $this;
     }
 }

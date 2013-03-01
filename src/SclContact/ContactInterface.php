@@ -24,7 +24,8 @@ interface ContactInterface
     /**
      * Sets the value for name.
      *
-     * @param PersonNameInterface $name
+     * @param  PersonNameInterface $name
+     * @return self
      */
     public function setName(PersonNameInterface $name);
 
@@ -38,7 +39,8 @@ interface ContactInterface
     /**
      * Sets the value for company.
      *
-     * @param string $company
+     * @param  string $company
+     * @return self
      */
     public function setCompany($company);
 
@@ -52,7 +54,8 @@ interface ContactInterface
     /**
      * Sets the value for email.
      *
-     * @param EmailInterface $email
+     * @param  EmailInterface $email
+     * @return self
      */
     public function setEmail(EmailInterface $email);
 
@@ -66,7 +69,8 @@ interface ContactInterface
     /**
      * Sets the value for address.
      *
-     * @param AddressInterface $address
+     * @param  AddressInterface $address
+     * @return self
      */
     public function setAddress(AddressInterface $address);
 
@@ -80,7 +84,8 @@ interface ContactInterface
     /**
      * Sets the value for phone.
      *
-     * @param PhoneNumberInterface $phone
+     * @param  PhoneNumberInterface $phone
+     * @return self
      */
     public function setPhone(PhoneNumberInterface $phone);
 
@@ -94,14 +99,16 @@ interface ContactInterface
     /**
      * Sets the value for fax.
      *
-     * @param PhoneNumberInterface $fax
+     * @param  PhoneNumberInterface $fax
+     * @return self
      */
     public function setFax(PhoneNumberInterface $fax);
 
     /**
      * Reads the contents of a given contact object into this object.
      *
-     * @param ContactInterface $contact
+     * @param  ContactInterface $contact
+     * @return self
      */
     public function import(ContactInterface $contact);
 }

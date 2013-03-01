@@ -15,12 +15,14 @@ namespace SclContact;
 class Postcode implements PostcodeInterface
 {
     /**
+     * The postcode string.
+     *
      * @var string
      */
     protected $postcode;
 
     /**
-     * Initialise the class.
+     * {@inheritDoc}
      * 
      * @param string $postcode
      */
@@ -30,7 +32,7 @@ class Postcode implements PostcodeInterface
     }
 
     /**
-     * Returns the postcode value.
+     * {@inheritDoc}
      *
      * @return string
      */
@@ -40,17 +42,20 @@ class Postcode implements PostcodeInterface
     }
 
     /**
-     * Sets the value of the postcode.
+     * {@inheritDoc}
      *
-     * @param unknown_type $postcode
+     * @param string $postcode
+     * @return self
      */
     public function set($postcode)
     {
         $this->postcode = (string) $postcode;
+
+        return $this;
     }
 
     /**
-     * Returns the value of the postcode.
+     * {@inheritDoc}
      *
      * @return string
      */
@@ -60,12 +65,15 @@ class Postcode implements PostcodeInterface
     }
 
     /**
-     * Reads the contents of a PostCodeInterface object into this.
+     * {@inheritDoc}
      *
      * @param PostcodeInterface $postcode
+     * @return self
      */
     public function import(PostcodeInterface $postcode)
     {
         $this->postcode = $postcode->get();
+
+        return $this;
     }
 }

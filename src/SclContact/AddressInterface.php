@@ -24,7 +24,8 @@ interface AddressInterface
     /**
      * Sets the value for line1.
      *
-     * @param string $line1
+     * @param  string $line1
+     * @return self
      */
     public function setLine1($line1);
 
@@ -38,7 +39,8 @@ interface AddressInterface
     /**
      * Sets the value for line2.
      *
-     * @param string $line2
+     * @param  string $line2
+     * @return self
      */
     public function setLine2($line2);
 
@@ -52,7 +54,8 @@ interface AddressInterface
     /**
      * Sets the value for city.
      *
-     * @param string $city
+     * @param  string $city
+     * @return self
      */
     public function setCity($city);
 
@@ -66,7 +69,8 @@ interface AddressInterface
     /**
      * Sets the value for county.
      *
-     * @param string $county
+     * @param  string $county
+     * @return self
      */
     public function setCounty($county);
 
@@ -80,7 +84,8 @@ interface AddressInterface
     /**
      * Sets the value for postcode.
      *
-     * @param PostcodeInterface $postcode
+     * @param  PostcodeInterface $postcode
+     * @return self
      */
     public function setPostcode(PostcodeInterface $postcode);
 
@@ -94,14 +99,16 @@ interface AddressInterface
     /**
      * Sets the value for country.
      *
-     * @param CountryInterface $country
+     * @param  CountryInterface $country
+     * @return self
      */
     public function setCountry(CountryInterface $country);
 
     /**
      * Reads the contents of a given address object into this object.
      *
-     * @param ContactInterface $contact
+     * @param  AddressInterface $address
+     * @return self
      */
     public function import(AddressInterface $address);
 }

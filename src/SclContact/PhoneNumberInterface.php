@@ -31,7 +31,8 @@ interface PhoneNumberInterface
     /**
      * Sets the value of the phone number.
      *
-     * @param string $number
+     * @param  string $number
+     * @return self
      */
     public function set($number);
 
@@ -45,7 +46,8 @@ interface PhoneNumberInterface
     /**
      * Reads the contents of a PhoneNumberInterface object into this.
      *
-     * @param PhoneNumberInterface $phoneNumber
+     * @param  PhoneNumberInterface $phoneNumber
+     * @return self
      */
     public function import(PhoneNumberInterface $phoneNumber);
 }

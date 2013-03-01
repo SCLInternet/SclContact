@@ -31,7 +31,8 @@ interface PostcodeInterface
     /**
      * Sets the value of the postcode.
      *
-     * @param unknown_type $postcode
+     * @param  string $postcode
+     * @return self
      */
     public function set($postcode);
 
@@ -46,6 +47,7 @@ interface PostcodeInterface
      * Reads the contents of a PostCodeInterface object into this.
      *
      * @param PostcodeInterface $postcode
+     * @return self
      */
     public function import(PostcodeInterface $postcode);
 }

@@ -38,14 +38,16 @@ interface CountryInterface
     /**
      * Sets the value for code.
      *
-     * @param string $code
+     * @param  string $code
+     * @return self
      */
     public function setCode($code);
 
     /**
      * Reads the contents of a CountryInterface object into this.
      *
-     * @param EmailAddressInterface $country
+     * @param  CountryInterface $country
+     * @return self
      */
     public function import(CountryInterface $country);
 }
