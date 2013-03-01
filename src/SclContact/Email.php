@@ -49,7 +49,7 @@ class Email implements EmailInterface
      */
     public function set($address)
     {
-        $this->$address = (string) $address;
+        $this->address = (string) $address;
 
         return $this;
     }
