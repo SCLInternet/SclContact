@@ -26,7 +26,7 @@ class Contact implements ContactInterface
      *
      * @var string
      */
-    protected $company;
+    protected $company = '';
 
     /**
      * The email address of the contact.

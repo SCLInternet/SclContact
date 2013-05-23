@@ -19,14 +19,14 @@ class PersonName implements PersonNameInterface
      *
      * @var string
      */
-    protected $firstName;
+    protected $firstName = '';
 
     /**
      * The persons last name
      *
      * @var string
      */
-    protected $lastName;
+    protected $lastName = '';
 
     /**
      * {@inheritDoc}
@@ -42,7 +42,7 @@ class PersonName implements PersonNameInterface
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @return string
      */
     public function __toString()
