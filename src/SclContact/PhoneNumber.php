@@ -19,11 +19,11 @@ class PhoneNumber implements PhoneNumberInterface
      *
      * @var string
      */
-    protected $number;
+    protected $number = '';
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @param string $number
      */
     public function __construct($number = '')

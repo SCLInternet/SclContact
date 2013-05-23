@@ -20,28 +20,28 @@ class Address implements AddressInterface
      *
      * @var string
      */
-    protected $line1;
+    protected $line1 = '';
 
     /**
      * Second line of the address.
      *
      * @var string
      */
-    protected $line2;
+    protected $line2 = '';
 
     /**
      * The town/city line of the address.
      *
      * @var string
      */
-    protected $city;
+    protected $city = '';
 
     /**
      * The county/state line of the address.
      *
      * @var string
      */
-    protected $county;
+    protected $county = '';
 
     /**
      * The post/zip code.
