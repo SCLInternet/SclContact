@@ -19,11 +19,11 @@ class Email implements EmailInterface
      *
      * @var string
      */
-    protected $address;
+    protected $address = '';
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @param string $address
      */
     public function __construct($address = '')

@@ -19,11 +19,11 @@ class Postcode implements PostcodeInterface
      *
      * @var string
      */
-    protected $postcode;
+    protected $postcode = '';
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @param string $postcode
      */
     public function __construct($postcode = '')
