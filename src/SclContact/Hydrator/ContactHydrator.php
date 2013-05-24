@@ -22,6 +22,7 @@ class ContactHydrator implements HydratorInterface
     const LAST_NAME  = 'contact-last-name';
     const COMPANY    = 'contact-company';
     const EMAIL      = 'contact-email';
+    const ADDRESS    = 'contact-address';
     const PHONE_NO   = 'contact-phone-no';
     const FAX_NO     = 'contact-fax-no';
 
@@ -63,7 +64,12 @@ class ContactHydrator implements HydratorInterface
 
         $object->getEmail()->set($data[self::EMAIL]);
 
-        $this->addressHydrator->hydrate($data, $object->getAddress());
+        if (is_array($data[self::ADDRESS])) {
+            $this->addressHydrator->hydrate(
+                $data[self::ADDRESS],
+                $object->getAddress()
+            );
+        }
 
         $object->getPhone()->set($data[self::PHONE_NO]);
         $object->getFax()->set($data[self::FAX_NO]);
@@ -83,15 +89,14 @@ class ContactHydrator implements HydratorInterface
             return array();
         }
 
-        $data = $this->addressHydrator->extract($object->getAddress());
-
-        $data[self::FIRST_NAME] = $object->getName()->getFirstName();
-        $data[self::LAST_NAME]  = $object->getName()->getLastName();
-        $data[self::EMAIL]      = $object->getEmail()->get();
-        $data[self::COMPANY]    = $object->getCompany();
-        $data[self::PHONE_NO]   = $object->getPhone()->get();
-        $data[self::FAX_NO]     = $object->getFax()->get();
-
-        return $data;
+        return array(
+            self::FIRST_NAME => $object->getName()->getFirstName(),
+            self::LAST_NAME  => $object->getName()->getLastName(),
+            self::ADDRESS    => $this->addressHydrator->extract($object->getAddress()),
+            self::EMAIL      => $object->getEmail()->get(),
+            self::COMPANY    => $object->getCompany(),
+            self::PHONE_NO   => $object->getPhone()->get(),
+            self::FAX_NO     => $object->getFax()->get(),
+        );
     }
 }
