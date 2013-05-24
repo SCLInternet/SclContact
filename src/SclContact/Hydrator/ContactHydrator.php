@@ -59,20 +59,30 @@ class ContactHydrator implements HydratorInterface
         $name = $object->getName();
         $name->setFirstName($data[self::FIRST_NAME])
              ->setLastName($data[self::LAST_NAME]);
+        $object->setName($name);
 
         $object->setCompany($data[self::COMPANY]);
 
-        $object->getEmail()->set($data[self::EMAIL]);
+        $email = $object->getEmail();
+        $email->set($data[self::EMAIL]);
+        $object->setEmail($email);
 
         if (is_array($data[self::ADDRESS])) {
+            $address = $object->getAddress();
             $this->addressHydrator->hydrate(
                 $data[self::ADDRESS],
-                $object->getAddress()
+                $address
             );
+            $object->setAddress($address);
         }
 
-        $object->getPhone()->set($data[self::PHONE_NO]);
-        $object->getFax()->set($data[self::FAX_NO]);
+        $phone = $object->getPhone();
+        $phone->set($data[self::PHONE_NO]);
+        $object->setPhone($phone);
+
+        $fax = $object->getFax();
+        $fax->set($data[self::FAX_NO]);
+        $object->setFax($fax);
 
         return $object;
     }
