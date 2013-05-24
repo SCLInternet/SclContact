@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ### Run unit tests
-#phpunit
-#PHPUNIT=$?
+vendor/bin/phpunit
+PHPUNIT=$?
 
 ### Check coding standards
 vendor/bin/phpcs --standard=psr2 src
@@ -38,10 +38,10 @@ EXIT=0
 echo
 echo "#### RESULTS:"
 
-#if [ "$PHPUNIT" -ne "0" ]; then
-#    echo "**** Unit tests failed"
-#    EXIT=1
-#fi
+if [ "$PHPUNIT" -ne "0" ]; then
+    echo "**** Unit tests failed"
+    EXIT=1
+fi
 if [ "$PHPCS" -ne "0" ]; then
     echo "**** Coding standards failed"
     EXIT=1
