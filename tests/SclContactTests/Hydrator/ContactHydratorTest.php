@@ -82,7 +82,7 @@ class ContactHydratorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('first', $result['contact-first-name']);
         $this->assertEquals('last', $result['contact-last-name']);
         $this->assertEquals('the-company', $result['contact-company']);
-        $this->assertEquals('the-address', $result['address']);
+        $this->assertEquals($addressData, $result['contact-address']);
         $this->assertEquals('abc@efg.hjk', $result['contact-email']);
         $this->assertEquals('01234567890', $result['contact-phone-no']);
         $this->assertEquals('09876543210', $result['contact-fax-no']);
@@ -129,12 +129,16 @@ class ContactHydratorTest extends \PHPUnit_Framework_TestCase
             'contact-email'      => 'abc@def@hij',
             'contact-phone-no'   => '01234567890',
             'contact-fax-no'     => '09876543210',
+            'contact-address'    => array('address-data'),
         );
 
         $this->addressHydrator
              ->expects($this->once())
              ->method('hydrate')
-             ->with($this->equalTo($data), $this->equalTo($contact->getAddress()));
+             ->with(
+                $this->equalTo($data['contact-address']),
+                $this->equalTo($contact->getAddress())
+              );
 
         $result = $this->hydrator->hydrate($data, $contact);
 
