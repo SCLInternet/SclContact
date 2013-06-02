@@ -10,8 +10,8 @@
         backupGlobals="false"
         syntaxCheck="true"
         >
-    <testsuite name="SclContactTests">
-        <directory>./tests</directory>
+    <testsuite name="UnitTests">
+        <directory>./tests/</directory>
     </testsuite>
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
@@ -19,6 +19,6 @@
         </whitelist>
     </filter>
     <logging>
-        <log type="coverage-clover" target="./clover.xml"/>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
     </logging>
 </phpunit>
