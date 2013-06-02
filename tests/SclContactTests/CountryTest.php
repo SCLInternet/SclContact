@@ -62,6 +62,20 @@ class CountryTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * Test the setCode with string which is not 2 chars long.
+     *
+     * @covers SclContact\Country::setCode
+     * @expectedException SclContact\Exception\InvalidArgumentException
+     *
+     * @return void
+     */
+    public function testSetInvalidCode()
+    {
+        $country = new Country();
+
+        $country->setCode('X');
+    }
 
     /**
      * Test the import function.
