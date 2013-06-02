@@ -1,7 +1,7 @@
 composer.lock
 composer.phar
 vendor
-clover.xml
+build
 .buildpath
 .project
 .settings

@@ -216,7 +216,7 @@ class Contact implements ContactInterface
     public function import(ContactInterface $contact)
     {
         $this->name->import($contact->getName());
-        $this->comapany = $contact->getCompany();
+        $this->setCompany($contact->getCompany());
         $this->email->import($contact->getEmail());
         $this->address->import($contact->getAddress());
         $this->phone->import($contact->getPhone());
