@@ -24,7 +24,9 @@
     "autoload": {
         "psr-0": {
             "SclContact\\": "src/"
-        }
+        },
+        "classmap" : [
+            "./Module.php"
+        ]
     }
-
 }

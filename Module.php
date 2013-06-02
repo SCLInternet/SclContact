@@ -7,6 +7,7 @@
  */
 namespace SclContact;
 
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\FilterProviderInterface;
 use Zend\ModuleManager\Feature\HydratorProviderInterface;
 
@@ -17,9 +18,29 @@ use Zend\ModuleManager\Feature\HydratorProviderInterface;
  * @author Tom Oram <tom@scl.co.uk>
  */
 class Module implements
+    AutoloaderProviderInterface,
     FilterProviderInterface,
     HydratorProviderInterfaced
 {
+    /**
+     * {@inheritDoc}
+     *
+     * @return array
+     */
+    public function getAutoloaderConfig()
+    {
+        return array(
+            'Zend\Loader\ClassMapAutoloader' => array(
+                __DIR__ . '/autoload_classmap.php',
+            ),
+            'Zend\Loader\StandardAutoloader' => array(
+                'namespaces' => array(
+                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                ),
+            ),
+        );
+    }
+
     /**
      * {@inheritDoc}
      *
