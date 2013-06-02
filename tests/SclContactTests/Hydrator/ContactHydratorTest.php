@@ -136,9 +136,9 @@ class ContactHydratorTest extends \PHPUnit_Framework_TestCase
              ->expects($this->once())
              ->method('hydrate')
              ->with(
-                $this->equalTo($data['contact-address']),
-                $this->equalTo($contact->getAddress())
-              );
+                 $this->equalTo($data['contact-address']),
+                 $this->equalTo($contact->getAddress())
+             );
 
         $result = $this->hydrator->hydrate($data, $contact);
 

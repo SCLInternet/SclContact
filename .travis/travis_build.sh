@@ -5,7 +5,7 @@ vendor/bin/phpunit
 PHPUNIT=$?
 
 ### Check coding standards
-vendor/bin/phpcs --standard=psr2 src
+vendor/bin/phpcs --standard=psr2 src tests
 PHPCS=$?
 
 ### Check code quality
@@ -23,7 +23,7 @@ LICENSE_HEADER="<?php
  * @license http://opensource.org/licenses/MIT The MIT License (MIT)
  */"
 
-for i in `find src -name '*.php'`; do
+for i in `find src tests -name '*.php'`; do
     diff <(echo "$LICENSE_HEADER") <(head -7 "$i");
 
     if [ "$?" -ne "0" ]; then
