@@ -7,6 +7,8 @@
  */
 namespace SclContact;
 
+use SclContact\Exception\InvalidArgumentException;
+
 /**
  * Basic class for storing a country.
  *
@@ -58,13 +60,14 @@ class Country implements CountryInterface
      *
      * @param  string $code
      * @return self
+     * @throws InvalidArgumentException When $code is not 2 characters long.
      */
     public function setCode($code)
     {
         $code = strtolower($code);
 
         if (strlen($code) !== 2) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 "Country code must be 2 letters long, got '$code'."
             );
         }

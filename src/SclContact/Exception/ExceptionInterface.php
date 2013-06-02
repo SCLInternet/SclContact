@@ -9,11 +9,10 @@
 namespace SclContact\Exception;
 
 /**
- * Exception for when invalid arguments are provided.
+ * Used to identify exceptions thrown from this module.
  *
  * @author Tom Oram <tom@scl.co.uk>
  */
-class InvalidArgumentException extends \InvalidArgumentException implements
-    ExceptionInterface
+interface ExceptionInterface
 {
 }
