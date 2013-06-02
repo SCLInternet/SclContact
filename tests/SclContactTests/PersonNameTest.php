@@ -5,11 +5,11 @@ namespace SclContactTests;
 use SclContact\PersonName;
 
 /**
- * Unit tests for the {@see Contact} class.
+ * Unit tests for the {@see PersonName} class.
  *
  * @author Tom Oram <tom@scl.co.uk>
  */
-class ContactTest extends \PHPUnit_Framework_TestCase
+class PersonNameTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * The instance to be tested.
