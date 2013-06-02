@@ -53,18 +53,18 @@ class ContactTest extends \PHPUnit_Framework_TestCase
      * Test all the getter and setters.
      *
      * @dataProvider getterSetterProvider
-     * @covers SclContact\Address::getName
-     * @covers SclContact\Address::setName
-     * @covers SclContact\Address::getCompany
-     * @covers SclContact\Address::setCompany
-     * @covers SclContact\Address::getEmail
-     * @covers SclContact\Address::setEmail
-     * @covers SclContact\Address::getAddress
-     * @covers SclContact\Address::setAddress
-     * @covers SclContact\Address::getPhone
-     * @covers SclContact\Address::setPhone
-     * @covers SclContact\Address::getFax
-     * @covers SclContact\Address::setFax
+     * @covers SclContact\Contact::getName
+     * @covers SclContact\Contact::setName
+     * @covers SclContact\Contact::getCompany
+     * @covers SclContact\Contact::setCompany
+     * @covers SclContact\Contact::getEmail
+     * @covers SclContact\Contact::setEmail
+     * @covers SclContact\Contact::getAddress
+     * @covers SclContact\Contact::setAddress
+     * @covers SclContact\Contact::getPhone
+     * @covers SclContact\Contact::setPhone
+     * @covers SclContact\Contact::getFax
+     * @covers SclContact\Contact::setFax
      *
      * @param  string $parameter The parameter to be tested
      * @param  mixed  $value     The value to use to test
