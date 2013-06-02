@@ -20,7 +20,7 @@ class AddressTest extends \PHPUnit_Framework_TestCase
     /**
      * Test the construction of the Address fieldset.
      *
-     * @covers SclContact\Address::__construct
+     * @covers SclContact\Fieldset\Form\Address::__construct
      *
      * @return void
      */

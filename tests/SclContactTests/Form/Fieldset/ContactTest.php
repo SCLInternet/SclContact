@@ -20,7 +20,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase
     /**
      * Test the construction of the Contact fieldset.
      *
-     * @covers SclContact\Contact::__construct
+     * @covers SclContact\Form\Fieldset\Contact::__construct
      *
      * @return void
      */
