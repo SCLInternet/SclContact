@@ -9,6 +9,7 @@ namespace SclContact;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\FilterProviderInterface;
+use Zend\ModuleManager\Feature\FormElementProviderInterface;
 use Zend\ModuleManager\Feature\HydratorProviderInterface;
 
 /**
@@ -20,6 +21,7 @@ use Zend\ModuleManager\Feature\HydratorProviderInterface;
 class Module implements
     AutoloaderProviderInterface,
     FilterProviderInterface,
+    FormElementProviderInterface,
     HydratorProviderInterface
 {
     /**
@@ -49,6 +51,21 @@ class Module implements
     public function getFilterConfig()
     {
         return array();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return array|\Zend\ServiceManager\Config
+     */
+    public function getFormElementConfig()
+    {
+        return array(
+            'invokables' => array(
+                'SclZfContact\Form\Fieldset\Address' => 'SclZfContact\Form\Fieldset\Address',
+                'SclZfContact\Form\Fieldset\Contact' => 'SclZfContact\Form\Fieldset\Contact',
+            ),
+        );
     }
 
     /**

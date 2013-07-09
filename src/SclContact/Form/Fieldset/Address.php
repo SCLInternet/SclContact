@@ -20,13 +20,10 @@ class Address extends Fieldset
     /**
      * Add the elements to the fieldset.
      *
-     * @param  string $name
-     * @param  array  $options
+     * @return void
      */
-    public function __construct($name = null, $options = array())
+    public function init()
     {
-        parent::__construct($name, $options);
-
         $this->add(
             array(
                 'name' => 'address-line1',
