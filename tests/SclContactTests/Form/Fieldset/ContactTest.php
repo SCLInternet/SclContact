@@ -20,7 +20,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase
     /**
      * Test the construction of the Contact fieldset.
      *
-     * @covers SclContact\Form\Fieldset\Contact::__construct
+     * @covers SclContact\Form\Fieldset\Contact::init
      *
      * @return void
      */
@@ -28,6 +28,48 @@ class ContactTest extends \PHPUnit_Framework_TestCase
     {
         $fieldset = new Contact();
 
-        $this->markTestIncomplete('Need to test elements are correctly added.');
+        $fieldset->init();
+
+        $this->assertInstanceOf(
+            'Zend\Form\Element\Text',
+            $fieldset->get('contact-first-name'),
+            'First Name'
+        );
+
+        $this->assertInstanceOf(
+            'Zend\Form\Element\Text',
+            $fieldset->get('contact-last-name'),
+            'Last name'
+        );
+
+        $this->assertInstanceOf(
+            'Zend\Form\Element\Text',
+            $fieldset->get('contact-company'),
+            'Company'
+        );
+
+        $this->assertInstanceOf(
+            'Zend\Form\Element\Email',
+            $fieldset->get('contact-email'),
+            'Email'
+        );
+
+        $this->assertInstanceOf(
+            'SclContact\Form\Fieldset\Address',
+            $fieldset->get('contact-address'),
+            'Address'
+        );
+
+        $this->assertInstanceOf(
+            'Zend\Form\Element\Text',
+            $fieldset->get('contact-phone-no'),
+            'Phone no'
+        );
+
+        $this->assertInstanceOf(
+            'Zend\Form\Element\Text',
+            $fieldset->get('contact-fax-no'),
+            'Fax no'
+        );
     }
 }
