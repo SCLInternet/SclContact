@@ -20,7 +20,7 @@ class AddressTest extends \PHPUnit_Framework_TestCase
     /**
      * Test the construction of the Address fieldset.
      *
-     * @covers SclContact\Form\Fieldset\Address::__construct
+     * @covers SclContact\Form\Fieldset\Address::init
      *
      * @return void
      */
@@ -28,6 +28,42 @@ class AddressTest extends \PHPUnit_Framework_TestCase
     {
         $fieldset = new Address();
 
-        $this->markTestIncomplete('Need to test elements are correctly added.');
+        $fieldset->init();
+
+        $this->assertInstanceOf(
+            'Zend\Form\Element\Text',
+            $fieldset->get('address-line1'),
+            'Line 1'
+        );
+
+        $this->assertInstanceOf(
+            'Zend\Form\Element\Text',
+            $fieldset->get('address-line2'),
+            'Line 2'
+        );
+
+        $this->assertInstanceOf(
+            'Zend\Form\Element\Text',
+            $fieldset->get('address-city'),
+            'City'
+        );
+
+        $this->assertInstanceOf(
+            'Zend\Form\Element\Text',
+            $fieldset->get('address-county'),
+            'County'
+        );
+
+        $this->assertInstanceOf(
+            'Zend\Form\Element\Text',
+            $fieldset->get('address-postcode'),
+            'Postcode'
+        );
+
+        $this->assertInstanceOf(
+            'Zend\Form\Element\Text',
+            $fieldset->get('address-postcode'),
+            'Country'
+        );
     }
 }
