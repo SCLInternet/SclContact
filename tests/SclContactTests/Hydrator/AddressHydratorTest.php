@@ -47,6 +47,17 @@ class AddressHydratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testExtract()
     {
+        $country = $this->getMock('SclContact\CountryInterface');
+
+        $countryManager = $this->getMock('SclContact\Country\CountryManagerInterface');
+
+        $this->hydrator->setCountryManager($countryManager);
+
+        $countryManager->expects($this->once())
+                       ->method('getIdentifier')
+                       ->with($this->equalTo($country))
+                       ->will($this->returnValue('uk'));
+
         $address = new \SclContact\Address();
 
         $address->setLine1('line 1')
@@ -54,7 +65,7 @@ class AddressHydratorTest extends \PHPUnit_Framework_TestCase
                 ->setCity('city')
                 ->setCounty('county')
                 ->setPostcode(new \SclContact\Postcode('pc123'))
-                ->setCountry(new \SclContact\Country('uk'));
+                ->setCountry($country);
 
         $result = $this->hydrator->extract($address);
 
@@ -77,6 +88,8 @@ class AddressHydratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testExtractWithBadObject()
     {
+        $this->hydrator->setCountryManager($this->getMock('SclContact\Country\CountryManagerInterface'));
+
         $object = new \stdClass();
 
         $result = $this->hydrator->extract($object);
@@ -98,6 +111,17 @@ class AddressHydratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testHydrate()
     {
+        $country = $this->getMock('SclContact\CountryInterface');
+
+        $countryManager = $this->getMock('SclContact\Country\CountryManagerInterface');
+
+        $this->hydrator->setCountryManager($countryManager);
+
+        $countryManager->expects($this->once())
+                       ->method('loadCountry')
+                       ->with($this->equalTo('uk'))
+                       ->will($this->returnValue($country));
+
         $address = new \SclContact\Address();
 
         $data = array(
@@ -118,7 +142,7 @@ class AddressHydratorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('city', $result->getCity());
         $this->assertEquals('county', $result->getCounty());
         $this->assertEquals('pc123', $result->getPostcode()->get());
-        $this->assertEquals('uk', $result->getCountry()->getCode());
+        $this->assertSame($country, $result->getCountry());
     }
 
     /**
@@ -132,6 +156,8 @@ class AddressHydratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testHydrateWithBadObject()
     {
+        $this->hydrator->setCountryManager($this->getMock('SclContact\Country\CountryManagerInterface'));
+
         $object = new \stdClass();
 
         $result = $this->hydrator->hydrate(array(), $object);

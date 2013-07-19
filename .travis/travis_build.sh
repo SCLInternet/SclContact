@@ -5,8 +5,11 @@ vendor/bin/phpunit
 PHPUNIT=$?
 
 ### Check coding standards
-vendor/bin/phpcs --standard=psr2 src tests
-PHPCS=$?
+PHPCS=0
+if [ "$TRAVIS_PHP_VERSION" != "5.3" ]; then
+    vendor/bin/phpcs --standard=psr2 src tests
+    PHPCS=$?
+fi
 
 ### Check code quality
 vendor/bin/phpmd src text codesize

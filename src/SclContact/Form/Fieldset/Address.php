@@ -8,22 +8,60 @@
 
 namespace SclContact\Form\Fieldset;
 
+use SclContact\Country\CountryManagerInterface;
+use SclContact\Exception\RuntimeException;
 use Zend\Form\Fieldset;
 
 /**
  * Fieldset for use with {@see SclContact\Address}.
  *
  * @author Tom Oram <tom@scl.co.uk>
+ * @todo   Use CountryManagerAwareTrait
  */
 class Address extends Fieldset
 {
     /**
+     * The country manager.
+     *
+     * @var CountryManagerInterface
+     */
+    protected $countryManager;
+
+    /**
+     * Set the country manager to be used.
+     *
+     * @param  CountryManagerInterface $manager
+     * @return self
+     */
+    public function setCountryManager(CountryManagerInterface $manager)
+    {
+        $this->countryManager = $manager;
+
+        return $this;
+    }
+
+    /**
+     * Return the country manager.
+     *
+     * @return CountryManagerInterface
+     */
+    public function getCountryManager()
+    {
+        return $this->countryManager;
+    }
+
+    /**
      * Add the elements to the fieldset.
      *
      * @return void
+     * @throws RuntimeException If the country manager has not yet been set.
      */
     public function init()
     {
+        if (!$this->countryManager instanceof CountryManagerInterface) {
+            throw RuntimeException::countryManagerNotSet(__METHOD__, __LINE__);
+        }
+
         $this->add(
             array(
                 'name' => 'address-line1',
@@ -96,13 +134,15 @@ class Address extends Fieldset
         $this->add(
             array(
                 'name' => 'address-country',
-                'type' => 'Zend\Form\Element\Text',
+                'type' => 'Zend\Form\Element\Select',
                 'attributes' => array(
                     'id'       => 'address-country',
                     'required' => 'required',
+                    'value'    => $this->countryManager->defaultCountry(),
                 ),
                 'options' => array(
-                    'label' => 'Country',
+                    'label'     => 'Country',
+                    'option_values' => $this->countryManager->countryList(),
                 ),
             )
         );
