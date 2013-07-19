@@ -8,6 +8,7 @@
 namespace SclContact;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\FilterProviderInterface;
 use Zend\ModuleManager\Feature\FormElementProviderInterface;
 use Zend\ModuleManager\Feature\HydratorProviderInterface;
@@ -21,6 +22,7 @@ use Zend\MdouleManager\Feature\ServiceConfigProviderInterface;
  */
 class Module implements
     AutoloaderProviderInterface,
+    ConfigProviderInterface,
     FilterProviderInterface,
     FormElementProviderInterface,
     HydratorProviderInterface
@@ -42,6 +44,11 @@ class Module implements
                 ),
             ),
         );
+    }
+
+    public function getConfig()
+    {
+        return include __DIR__ . '/../../config/module.config.php';
     }
 
     /**
