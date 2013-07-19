@@ -28,6 +28,8 @@ class AddressTest extends \PHPUnit_Framework_TestCase
     {
         $fieldset = new Address();
 
+        $fieldset->setCountryManager($this->getMock('SclContact\Country\CountryManagerInterface'));
+
         $fieldset->init();
 
         $this->assertInstanceOf(
