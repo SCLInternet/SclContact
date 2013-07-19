@@ -11,6 +11,7 @@ use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\FilterProviderInterface;
 use Zend\ModuleManager\Feature\FormElementProviderInterface;
 use Zend\ModuleManager\Feature\HydratorProviderInterface;
+use Zend\MdouleManager\Feature\ServiceConfigProviderInterface;
 
 /**
  * Zend Framework 2 module class which provide hydrators and filters when
@@ -62,8 +63,20 @@ class Module implements
     {
         return array(
             'invokables' => array(
-                'SclZfContact\Form\Fieldset\Address' => 'SclZfContact\Form\Fieldset\Address',
-                'SclZfContact\Form\Fieldset\Contact' => 'SclZfContact\Form\Fieldset\Contact',
+                'SclContact\Form\Fieldset\Contact' => 'SclContact\Form\Fieldset\Contact',
+            ),
+            'factories' => array(
+                'SclContact\Form\Fieldset\Address' => function ($em) {
+                    $sm = $em->getServiceLocator();
+
+                    $address = new \SclContact\Form\Fieldset\Address();
+
+                    $address->setCountryManager(
+                        $sm->get('SclContact\Country\CountryManagerInterface')
+                    );
+
+                    return $address;
+                },
             ),
         );
     }
@@ -76,13 +89,54 @@ class Module implements
     public function getHydratorConfig()
     {
         return array(
-            'invokables' => array(
-                'SclContact\Hydrator\AddressHydrator' => 'SclContact\Hydrator\AddressHydrator',
-            ),
             'factories' => array(
-                'SclContact\Hydrator\ContactHydrator' => function ($sm) {
+                'SclContact\Hydrator\AddressHydrator' => function ($hm) {
+                    $sm = $hm->getServiceLocator();
+
+                    $address = new \SclContact\Hydrator\AddressHydrator();
+
+                    $address->setCountryManager(
+                        $sm->get('SclContact\Country\CountryManagerInterface')
+                    );
+
+                    return $address;
+                },
+                'SclContact\Hydrator\ContactHydrator' => function ($hm) {
                     return new \SclContact\Hydrator\ContactHydrator(
-                        $sm->get('SclContact\Hydrator\AddressHydrator')
+                        $hm->get('SclContact\Hydrator\AddressHydrator')
+                    );
+                },
+            ),
+        );
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * return array
+     */
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'SclContact\Options\ContactOptionsInterface' => function ($sm) {
+                    $config = $sm->get('Config');
+
+                    return new \SclContact\Options\ContactOptions(
+                        $config['scl_contact']
+                    );
+                },
+                // Returns the configured country manager
+                'SclContact\Country\CountryManagerInterface' => function ($sm) {
+                    $options = $sm->get('SclContact\Options\ContactOptionsInterface');
+
+                    return $sm->get($options->getCountryMananger());
+                },
+                // Returns an instance of the default country manager
+                'SclContact\Country\CountryManager' => function ($sm) {
+                    return \SclContact\Country\CountryManager(
+                        $sm->get('SclContact\Options\CountactOptionsInterface'),
+                        $sm
                     );
                 },
             ),

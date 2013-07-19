@@ -75,14 +75,44 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
 
         $this->checkInvokableService(
             $config,
-            'SclZfContact\Form\Fieldset\Address',
-            'SclZfContact\Form\Fieldset\Address'
+            'SclContact\Form\Fieldset\Contact',
+            'SclContact\Form\Fieldset\Contact'
         );
+    }
 
-        $this->checkInvokableService(
+    /**
+     * Test getFormElementConfig().
+     *
+     * @covers SclContact\Module::getFormElementConfig
+     *
+     * @return void
+     */
+    public function testAddressHydratorConfigFormElementConfig()
+    {
+        $config = $this->module->getFormElementConfig();
+
+        $countryManager = $this->getMockBuilder('SclContact\Country\CountryManager')
+                               ->disableOriginalConstructor()
+                               ->getMock();
+
+        $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
+
+        $serviceLocator->expects($this->once())
+                       ->method('get')
+                       ->with($this->equalTo('SclContact\Country\CountryManagerInterface'))
+                       ->will($this->returnValue($countryManager));
+
+        $elementManager = $this->getMock('Zend\Form\FormElementManager');
+
+        $elementManager->expects($this->any())
+                        ->method('getServiceLocator')
+                        ->will($this->returnValue($serviceLocator));
+
+        $this->checkFactoryCallbackService(
             $config,
-            'SclZfContact\Form\Fieldset\Contact',
-            'SclZfContact\Form\Fieldset\Contact'
+            'SclContact\Form\Fieldset\Address',
+            'SclContact\Form\Fieldset\Address',
+            $elementManager
         );
     }
 
@@ -93,15 +123,45 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function testGetHydratorConfig()
+    public function testAddressHydratorConfig()
     {
         $config = $this->module->getHydratorConfig();
 
-        $this->checkInvokableService(
+        $countryManager = $this->getMockBuilder('SclContact\Country\CountryManager')
+                               ->disableOriginalConstructor()
+                               ->getMock();
+
+        $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
+
+        $serviceLocator->expects($this->once())
+                       ->method('get')
+                       ->with($this->equalTo('SclContact\Country\CountryManagerInterface'))
+                       ->will($this->returnValue($countryManager));
+
+        $hydratorManager = $this->getMock('Zend\Stdlib\Hydrator\HydratorPluginManager');
+
+        $hydratorManager->expects($this->any())
+                        ->method('getServiceLocator')
+                        ->will($this->returnValue($serviceLocator));
+
+        $this->checkFactoryCallbackService(
             $config,
             'SclContact\Hydrator\AddressHydrator',
-            'SclContact\Hydrator\AddressHydrator'
+            'SclContact\Hydrator\AddressHydrator',
+            $hydratorManager
         );
+    }
+
+    /**
+     * Test getHydratorConfig().
+     *
+     * @covers SclContact\Module::getHydratorConfig
+     *
+     * @return void
+     */
+    public function testContactHydratorConfig()
+    {
+        $config = $this->module->getHydratorConfig();
 
         $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
 
