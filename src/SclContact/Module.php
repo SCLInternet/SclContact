@@ -46,6 +46,11 @@ class Module implements
         );
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @return array
+     */
     public function getConfig()
     {
         return include __DIR__ . '/../../config/module.config.php';
@@ -137,12 +142,12 @@ class Module implements
                 'SclContact\Country\CountryManagerInterface' => function ($sm) {
                     $options = $sm->get('SclContact\Options\ContactOptionsInterface');
 
-                    return $sm->get($options->getCountryMananger());
+                    return $sm->get($options->getCountryManager());
                 },
                 // Returns an instance of the default country manager
                 'SclContact\Country\CountryManager' => function ($sm) {
-                    return \SclContact\Country\CountryManager(
-                        $sm->get('SclContact\Options\CountactOptionsInterface'),
+                    return new \SclContact\Country\CountryManager(
+                        $sm->get('SclContact\Options\ContactOptionsInterface'),
                         $sm
                     );
                 },

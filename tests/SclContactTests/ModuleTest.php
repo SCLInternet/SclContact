@@ -181,6 +181,103 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Check the service config for the ContactOptionsInterface.
+     *
+     * @covers SclContact\Module::getServiceConfig
+     *
+     * @return void
+     */
+    public function testContactOptionsServiceConfig()
+    {
+        $configArray = array('scl_contact' => array());
+
+        $config = $this->module->getServiceConfig();
+
+        $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
+
+        $serviceLocator->expects($this->once())
+                       ->method('get')
+                       ->with($this->equalTo('Config'))
+                       ->will($this->returnValue($configArray));
+
+        $this->checkFactoryCallbackService(
+            $config,
+            'SclContact\Options\ContactOptionsInterface',
+            'SclContact\Options\ContactOptions',
+            $serviceLocator
+        );
+    }
+
+    /**
+     * Check the service config for the CountryManager.
+     *
+     * @covers SclContact\Module::getServiceConfig
+     *
+     * @return void
+     */
+    public function testCountryManagerServiceConfig()
+    {
+        $config = $this->module->getServiceConfig();
+
+        $options = $this->getMock('SclContact\Options\ContactOptionsInterface');
+
+        $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
+
+        $serviceLocator->expects($this->once())
+                       ->method('get')
+                       ->with($this->equalTo('SclContact\Options\ContactOptionsInterface'))
+                       ->will($this->returnValue($options));
+
+        $this->checkFactoryCallbackService(
+            $config,
+            'SclContact\Country\CountryManager',
+            'SclContact\Country\CountryManager',
+            $serviceLocator
+        );
+    }
+
+    /**
+     * Check the service config for the CountryManagerInterface.
+     *
+     * @covers SclContact\Module::getServiceConfig
+     *
+     * @return void
+     */
+    public function testCountryManagerInterfaceServiceConfig()
+    {
+        $dummyManager = new \stdClass();
+
+        $config = $this->module->getServiceConfig();
+
+        $options = $this->getMock('SclContact\Options\ContactOptionsInterface');
+
+        $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
+
+        $serviceLocator->expects($this->at(0))
+                       ->method('get')
+                       ->with($this->equalTo('SclContact\Options\ContactOptionsInterface'))
+                       ->will($this->returnValue($options));
+
+        $options->expects($this->once())
+                ->method('getCountryManager')
+                ->will($this->returnValue('ManagerClass'));
+
+        $serviceLocator->expects($this->at(1))
+                       ->method('get')
+                       ->with($this->equalTo('ManagerClass'))
+                       ->will($this->returnValue($dummyManager));
+
+        $manager = $this->checkFactoryCallbackService(
+            $config,
+            'SclContact\Country\CountryManagerInterface',
+            'stdClass',
+            $serviceLocator
+        );
+
+        $this->assertSame($dummyManager, $manager);
+    }
+
+    /**
      * Check the value in an invokables section of the config.
      *
      * @param  array  $config
