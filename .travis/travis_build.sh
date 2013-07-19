@@ -6,7 +6,7 @@ PHPUNIT=$?
 
 ### Check coding standards
 PHPCS=0
-if [ '$TRAVIS_PHP_VERSION' != '5.3' ]; then
+if [ "$TRAVIS_PHP_VERSION" != "5.3" ]; then
     vendor/bin/phpcs --standard=psr2 src tests
     PHPCS=$?
 fi
