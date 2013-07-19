@@ -142,7 +142,7 @@ class Address extends Fieldset
                 ),
                 'options' => array(
                     'label'     => 'Country',
-                    'option_values' => $this->countryManager->countryList(),
+                    'options' => $this->countryManager->countryList(),
                 ),
             )
         );
