@@ -78,6 +78,20 @@ class CountryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Make sure the country code can be set to an empty value.
+     *
+     * @covers SclContact\Country::setCode
+     *
+     * @return void
+     */
+    public function testSetWithEmptyValue()
+    {
+        $country = new Country();
+
+        $country->setCode('');
+    }
+
+    /**
      * Test the import function.
      *
      * @depends testGetSet

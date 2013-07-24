@@ -66,7 +66,7 @@ class Country implements CountryInterface
     {
         $code = strtolower($code);
 
-        if (strlen($code) !== 2) {
+        if (strlen($code) !== 2 && !empty($code)) {
             throw new InvalidArgumentException(
                 "Country code must be 2 letters long, got '$code'."
             );
