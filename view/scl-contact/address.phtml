@@ -1,0 +1,16 @@
+<?php
+$title = isset($this->title) ? $this->escapeHtml($this->title) : 'Address';
+
+$address = $this->address;
+?>
+<fieldset>
+    <legend><?php echo $title; ?>:</legend>
+    <?php
+    echo $this->formRow($address->get('address-line1'));
+    echo $this->formRow($address->get('address-line2'));
+    echo $this->formRow($address->get('address-city'));
+    echo $this->formRow($address->get('address-county'));
+    echo $this->formRow($address->get('address-postcode'));
+    echo $this->formRow($address->get('address-country'));
+    ?>
+</fieldset>

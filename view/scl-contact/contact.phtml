@@ -1,0 +1,23 @@
+<?php
+$title = isset($this->title) ? $this->escapeHtml($this->title) : 'Contact';
+
+$addressTitle = isset($this->addressTitle) ? $this->escapeHtml($addressTitle) : 'Address';
+
+$contact = $this->contact;
+$address = $contact->get('contact-address');
+?>
+<fieldset>
+    <legend><?php echo $title; ?>:</legend>
+    <?
+    echo $this->formRow($contact->get('contact-first-name'));
+    echo $this->formRow($contact->get('contact-last-name'));
+    echo $this->formRow($contact->get('contact-company'));
+    echo $this->formRow($contact->get('contact-email'));
+    echo $this->formRow($contact->get('contact-phone-no'));
+    echo $this->formRow($contact->get('contact-fax-no'));
+    echo $this->partial(
+        'scl-contact/address',
+        array('address' => $address, 'title' => $addressTitle)
+    );
+    ?>
+</fieldset>
