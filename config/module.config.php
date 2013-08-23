@@ -27,4 +27,10 @@ return array(
          */
         'country_file_path' => __DIR__ . '/countries.config.php',
     ),
+
+    'view_manager' => array(
+        'template_path_stack' => array(
+            'SclContact' => __DIR__ . '/../view',
+        ),
+    ),
 );

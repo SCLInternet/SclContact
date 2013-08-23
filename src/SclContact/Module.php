@@ -13,7 +13,6 @@ use Zend\ModuleManager\Feature\FilterProviderInterface;
 use Zend\ModuleManager\Feature\FormElementProviderInterface;
 use Zend\ModuleManager\Feature\HydratorProviderInterface;
 use Zend\ModuleManager\Feature\ServiceConfigProviderInterface;
-use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
 
 /**
  * Zend Framework 2 module class which provide hydrators and filters when
@@ -26,8 +25,7 @@ class Module implements
     ConfigProviderInterface,
     FilterProviderInterface,
     FormElementProviderInterface,
-    HydratorProviderInterface,
-    ViewHelperProviderInterface
+    HydratorProviderInterface
 {
     /**
      * {@inheritDoc}
@@ -153,20 +151,6 @@ class Module implements
                         $sm
                     );
                 },
-            ),
-        );
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @return array
-     */
-    public function getViewHelperConfig()
-    {
-        return array(
-            'template_path_stack' => array(
-                'SclContact' => __DIR__ . '/../view',
             ),
         );
     }
