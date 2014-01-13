@@ -8,7 +8,7 @@ $address = $contact->get('contact-address');
 ?>
 <fieldset>
     <legend><?php echo $title; ?>:</legend>
-    <?
+    <?php
     echo $this->formRow($contact->get('contact-first-name'));
     echo $this->formRow($contact->get('contact-last-name'));
     echo $this->formRow($contact->get('contact-company'));
